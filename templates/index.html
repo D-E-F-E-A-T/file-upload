@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Flask App</title>
+        {{ dropzone.load() }}
+        {{ dropzone.style('border: 2px dashed #0087F7; margin: 30px 100px 20px 100px; min-height: 400px;') }}
+    </head>
+    <body>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flashes">
+                    {% for message in messages%}
+                        <li class="{{ category }}" style="text-align: center; list-style: none;">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        <div class="container text-center">
+            {{ dropzone.create(action_view='index') }}
+            <form action="{{ url_for('index') }}" method="POST" style="text-align: center; margin-bottom: 50px;">
+                <input type="submit" name="submit" value="upload" style="background: #4B99E3; border:none; border-radius:5px; color:white; width:120px; height:40px;">
+            </form>
+        </div>
+    </body>
+</html>
